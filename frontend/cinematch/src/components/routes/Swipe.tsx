@@ -1,7 +1,9 @@
-import React from "react";
-
 const Swipe = () => {
-  return <div>Swipe</div>;
+  return (
+    <div>
+      <h1>Swipe</h1>
+    </div>
+  );
 };
 
 export default Swipe;

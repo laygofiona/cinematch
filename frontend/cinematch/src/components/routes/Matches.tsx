@@ -1,7 +1,9 @@
-import React from "react";
-
 const Matches = () => {
-  return <div>Matches</div>;
+  return (
+    <div>
+      <h1>Matches</h1>
+    </div>
+  );
 };
 
 export default Matches;
