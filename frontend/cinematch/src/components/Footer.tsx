@@ -6,25 +6,37 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import SwipeIcon from "@mui/icons-material/Swipe";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import PersonIcon from "@mui/icons-material/Person";
+import Paper from "@mui/material/Paper";
 
 export default function Footer() {
   const [value, setValue] = React.useState(0);
 
   return (
-    <div className="border-t border-gray-300 bg-white">
+    <div>
       <Box>
-        <BottomNavigation
-          showLabels
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
+        <Paper
+          sx={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            borderTop: "1px solid #e0e0e0",
           }}
+          elevation={3}
         >
-          <BottomNavigationAction label="Chats" icon={<ChatBubbleIcon />} />
-          <BottomNavigationAction label="Matches" icon={<FavoriteIcon />} />
-          <BottomNavigationAction label="Swipe" icon={<SwipeIcon />} />
-          <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
-        </BottomNavigation>
+          <BottomNavigation
+            showLabels
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+          >
+            <BottomNavigationAction label="Chats" icon={<ChatBubbleIcon />} />
+            <BottomNavigationAction label="Matches" icon={<FavoriteIcon />} />
+            <BottomNavigationAction label="Swipe" icon={<SwipeIcon />} />
+            <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
+          </BottomNavigation>
+        </Paper>
       </Box>
     </div>
   );
