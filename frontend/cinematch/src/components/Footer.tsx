@@ -8,6 +8,8 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import PersonIcon from "@mui/icons-material/Person";
 import Paper from "@mui/material/Paper";
 
+import { Link } from "react-router-dom";
+
 export default function Footer() {
   const [value, setValue] = React.useState(0);
 
@@ -31,10 +33,30 @@ export default function Footer() {
               setValue(newValue);
             }}
           >
-            <BottomNavigationAction label="Chats" icon={<ChatBubbleIcon />} />
-            <BottomNavigationAction label="Matches" icon={<FavoriteIcon />} />
-            <BottomNavigationAction label="Swipe" icon={<SwipeIcon />} />
-            <BottomNavigationAction label="Profile" icon={<PersonIcon />} />
+            <BottomNavigationAction
+              label="Chats"
+              component={Link}
+              to="/chat"
+              icon={<ChatBubbleIcon />}
+            />
+            <BottomNavigationAction
+              label="Matches"
+              component={Link}
+              to="/matches"
+              icon={<FavoriteIcon />}
+            />
+            <BottomNavigationAction
+              label="Swipe"
+              component={Link}
+              to="swipe"
+              icon={<SwipeIcon />}
+            />
+            <BottomNavigationAction
+              label="Profile"
+              component={Link}
+              to="profile"
+              icon={<PersonIcon />}
+            />
           </BottomNavigation>
         </Paper>
       </Box>
