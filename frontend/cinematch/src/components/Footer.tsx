@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import SwipeIcon from "@mui/icons-material/Swipe";
+import HomeIcon from "@mui/icons-material/Home";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import PersonIcon from "@mui/icons-material/Person";
 import Paper from "@mui/material/Paper";
@@ -34,10 +34,10 @@ export default function Footer() {
             }}
           >
             <BottomNavigationAction
-              label="Chats"
+              label="Home"
               component={Link}
-              to="/chat"
-              icon={<ChatBubbleIcon />}
+              to="/swipe"
+              icon={<HomeIcon />}
             />
             <BottomNavigationAction
               label="Matches"
@@ -46,10 +46,10 @@ export default function Footer() {
               icon={<FavoriteIcon />}
             />
             <BottomNavigationAction
-              label="Swipe"
+              label="Chats"
               component={Link}
-              to="swipe"
-              icon={<SwipeIcon />}
+              to="/chat"
+              icon={<ChatBubbleIcon />}
             />
             <BottomNavigationAction
               label="Profile"
