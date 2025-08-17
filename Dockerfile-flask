@@ -1,0 +1,19 @@
+FROM python:3.12-slim-bookworm
+
+# Set the working directory
+WORKDIR /flask_app
+
+COPY backend_recs/requirements.txt requirements.txt
+
+# Install dependencies into backend_recs
+RUN pip3 install -r requirements.txt
+
+# Copy only the necessary Flask server files from backend_recs into the working directory of the container
+COPY backend_recs/ /flask_app/
+
+# Start the Flask sevrer
+CMD ["flask", "run", "--host=0.0.0.0"]
+
+EXPOSE 5000
+
+

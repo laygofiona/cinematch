@@ -3,6 +3,5 @@ numpy
 scikit-learn
 supabase
 requests
-time
 dotenv
 flask
