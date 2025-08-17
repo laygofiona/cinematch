@@ -3,7 +3,7 @@ import Profile from "./Profile";
 import Swipe from "./Swipe";
 import Matches from "./Matches";
 import Chat from "./Chat";
-import SignIn from "./Signin";
+import SignIn from "./SignIn";
 import Portal from "../Portal";
 
 const routes = [
