@@ -4,12 +4,12 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import InputLabel from "@mui/material/InputLabel";
-import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import visuallyHidden from "@mui/utils/visuallyHidden";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 const StyledBox = styled("div")(({ theme }) => ({
   alignSelf: "center",
@@ -105,6 +105,8 @@ export default function Hero() {
             color="primary"
             size="small"
             sx={{ minWidth: "fit-content", padding: "1em" }}
+            component={Link}
+            to="/swipe"
           >
             Go to Dashboard
           </Button>
