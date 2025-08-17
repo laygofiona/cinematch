@@ -51,6 +51,8 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
+
+export default function SignIn(props: { disableCustomTheme?: boolean }) {
 export default function SignIn() {
   const handleGoogleSignIn = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
@@ -66,6 +68,7 @@ export default function SignIn() {
       console.log("Redirecting to Google sign-in...", data);
     }
   };
+
 
   return (
     <>
