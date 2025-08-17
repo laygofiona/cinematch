@@ -7,6 +7,7 @@ import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import { GoogleIcon } from "../CustomIcons";
 import NavBar from "../NavBar";
+import { supabase } from "../SupabaseClient";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -50,7 +51,22 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
-export default function SignIn(props: { disableCustomTheme?: boolean }) {
+export default function SignIn() {
+  const handleGoogleSignIn = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin, // optional, where to redirect after login
+      },
+    });
+
+    if (error) {
+      console.error("Google sign-in error:", error.message);
+    } else {
+      console.log("Redirecting to Google sign-in...", data);
+    }
+  };
+
   return (
     <>
       <NavBar />
@@ -68,7 +84,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
             <Button
               fullWidth
               variant="outlined"
-              onClick={() => alert("Sign in with Google")}
+              onClick={handleGoogleSignIn}
               startIcon={<GoogleIcon />}
             >
               Sign in with Google
