@@ -3,13 +3,11 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import InputLabel from "@mui/material/InputLabel";
 import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import visuallyHidden from "@mui/utils/visuallyHidden";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion"; // 👈 import Framer Motion
 
 const StyledBox = styled("div")(({ theme }) => ({
   alignSelf: "center",
@@ -27,11 +25,21 @@ const StyledBox = styled("div")(({ theme }) => ({
     height: 700,
   },
   ...theme.applyStyles("dark", {
-    boxShadow: "0 0 24px 12px rgba(140, 120, 170, 0.35)", // stronger glow
-    outlineColor: "rgba(140, 120, 170, 0.2)", // lighter purple outline in dark mode
+    boxShadow: "0 0 24px 12px rgba(140, 120, 170, 0.35)",
+    outlineColor: "rgba(140, 120, 170, 0.2)",
     borderColor: (theme.vars || theme).palette.grey[700],
   }),
 }));
+
+// Animation variants
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay },
+  }),
+};
 
 export default function Hero() {
   return (
@@ -42,11 +50,9 @@ export default function Hero() {
         backgroundRepeat: "no-repeat",
         backgroundImage:
           "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(140, 120, 170, 0.4), transparent)",
-        // lighter purple glow for light mode
         ...theme.applyStyles("dark", {
           backgroundImage:
             "radial-gradient(ellipse 80% 100% at 50% -15%, rgba(61, 50, 80, 0.9), transparent)",
-          // deeper purple gradient for dark mode
         }),
       })}
     >
@@ -64,30 +70,51 @@ export default function Hero() {
           useFlexGap
           sx={{ alignItems: "center", width: { xs: "100%", sm: "70%" } }}
         >
-          <Typography
-            variant="h1"
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", sm: "row" },
-              alignItems: "center",
-              fontSize: "clamp(3rem, 10vw, 3.5rem)",
-            }}
+          {/* Logo with fade */}
+          <motion.img
+            src="/CineMatch_logo.svg"
+            alt="Logo"
+            style={{ width: 200, height: 200, marginRight: "8px" }}
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={0}
+          />
+
+          {/* Title */}
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={0.2}
           >
-            Cine
             <Typography
-              component="span"
               variant="h1"
-              sx={(theme) => ({
-                fontSize: "inherit",
-                color: "primary.main",
-                ...theme.applyStyles("dark", {
-                  color: "primary.light",
-                }),
-              })}
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                alignItems: "center",
+                fontSize: "clamp(3rem, 10vw, 3.5rem)",
+              }}
             >
-              Match
+              Cine
+              <Typography
+                component="span"
+                variant="h1"
+                sx={(theme) => ({
+                  fontSize: "inherit",
+                  color: "primary.main",
+                  ...theme.applyStyles("dark", {
+                    color: "primary.light",
+                  }),
+                })}
+              >
+                Match
+              </Typography>
             </Typography>
-          </Typography>
+          </motion.div>
+
+          {/* Subtitle */}
           <Typography
             sx={{
               textAlign: "center",
@@ -100,11 +127,17 @@ export default function Hero() {
             discover shared favorites, and start conversations that go beyond
             small talk.
           </Typography>
+
+          {/* Button */}
           <Button
             variant="contained"
             color="primary"
             size="small"
-            sx={{ minWidth: "fit-content", padding: "1em" }}
+            sx={{
+              minWidth: "fit-content",
+              padding: "0.8em",
+              fontWeight: "1000",
+            }}
             component={Link}
             to="/swipe"
           >
