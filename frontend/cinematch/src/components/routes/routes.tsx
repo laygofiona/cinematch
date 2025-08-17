@@ -3,13 +3,13 @@ import Profile from "./Profile";
 import Swipe from "./Swipe";
 import Matches from "./Matches";
 import Chat from "./Chat";
-import SignUp from "./SignUp";
+import SignIn from "./Signin";
 import Portal from "../Portal";
 
 const routes = [
   // Routes without the Portal layout
   { path: "/", element: <Landing /> },
-  { path: "/signup", element: <SignUp /> },
+  { path: "/signin", element: <SignIn /> },
 
   // Routes wrapped in the Portal layout
   {
