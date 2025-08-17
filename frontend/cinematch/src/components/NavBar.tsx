@@ -11,7 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 
 const pages = ["About Us"];
 const settings = ["Profile", "Logout"];
@@ -43,7 +42,18 @@ function NavBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* DESKTOP VERSION OF THE NAVIGATION */}
+          <Box
+            component="img"
+            src="/logo_cinematch.png"
+            alt="Logo"
+            sx={{
+              display: { xs: "none", sm: "flex" }, // show from sm and up
+              mr: 1,
+              width: 40,
+              height: 40,
+            }}
+          />
           <Typography
             variant="h6"
             noWrap
@@ -59,10 +69,10 @@ function NavBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            CINEMATCH
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ display: { xs: "flex", sm: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -96,7 +106,19 @@ function NavBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+
+          {/* MOBILE VERSION OF THE NAVIGATION */}
+          <Box
+            component="img"
+            src="/logo_cinematch.png"
+            alt="Logo"
+            sx={{
+              display: { xs: "flex", sm: "none" }, // hide from sm and up
+              mr: 1,
+              width: 32,
+              height: 32,
+            }}
+          />
           <Typography
             variant="h5"
             noWrap
@@ -113,7 +135,7 @@ function NavBar() {
               textDecoration: "none",
             }}
           >
-            LOGO
+            CINEMATCH
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

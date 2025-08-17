@@ -8,8 +8,11 @@ const darkTheme = createTheme({
   palette: {
     mode: "dark",
     background: {
-      default: "#2b1d40", // overall app background
-      paper: "#2b1d40", // surfaces like Paper, AppBar, Cards
+      default: "#db4e6b", // overall app background
+      paper: "#2a1e3f", // surfaces like Paper, AppBar, Cards, BottomNavigation
+    },
+    primary: {
+      main: "#fad88e", // primary color for buttons, links, etc.
     },
   },
 });
