@@ -5,21 +5,32 @@ import Matches from "./Matches";
 import Chat from "./Chat";
 import SignIn from "./SignIn";
 import Portal from "../Portal";
+import ProtectedRoute from "./ProtectedRoute";
 
 const routes = [
-  // Routes without the Portal layout
-  { path: "/", element: <Landing /> },
+  // Landing page wrapped in ProtectedRoute
+  {
+    path: "/",
+    element: <Landing />,
+  },
+
+  // Sign-in route does not require authentication
   { path: "/signin", element: <SignIn /> },
 
-  // Routes wrapped in the Portal layout
+  // Routes wrapped in the Portal layout and ProtectedRoute
   {
-    path: "/", // layout route
-    element: <Portal />,
+    path: "/",
+    element: <ProtectedRoute />,
     children: [
-      { path: "profile", element: <Profile /> },
-      { path: "swipe", element: <Swipe /> },
-      { path: "matches", element: <Matches /> },
-      { path: "chat", element: <Chat /> },
+      {
+        element: <Portal />,
+        children: [
+          { path: "profile", element: <Profile /> },
+          { path: "swipe", element: <Swipe /> },
+          { path: "matches", element: <Matches /> },
+          { path: "chat", element: <Chat /> },
+        ],
+      },
     ],
   },
 ];

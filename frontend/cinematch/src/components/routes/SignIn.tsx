@@ -51,21 +51,25 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
-  const handleOAuthSignIn = async (provider: "google") => {
-    try {
 
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider,
-      });
+export default function SignIn(props: { disableCustomTheme?: boolean }) {
+export default function SignIn() {
+  const handleGoogleSignIn = async () => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: window.location.origin, // optional, where to redirect after login
+      },
+    });
 
-      if (error) throw error;
-    } catch (error) {
-      console.error("OAuth login error:", error);
-      //alert("Login failed. Please try again.");
+    if (error) {
+      console.error("Google sign-in error:", error.message);
+    } else {
+      console.log("Redirecting to Google sign-in...", data);
     }
   };
 
-export default function SignIn(props: { disableCustomTheme?: boolean }) {
+
   return (
     <>
       <NavBar />
@@ -83,7 +87,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
             <Button
               fullWidth
               variant="outlined"
-              onClick={() => handleOAuthSignIn("google")}
+              onClick={handleGoogleSignIn}
               startIcon={<GoogleIcon />}
             >
               Sign in with Google

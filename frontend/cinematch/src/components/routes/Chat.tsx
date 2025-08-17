@@ -1,7 +1,6 @@
 import * as React from "react";
-import { CssVarsProvider } from "@mui/joy/styles";
-import CssBaseline from "@mui/joy/CssBaseline";
-import Box from "@mui/joy/Box";
+// Only use CssVarsProvider if you plan to use Joy UI components somewhere
+import Box from "@mui/material/Box"; // Material Box
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import MyMessages from "./components/MyMessages";
@@ -9,16 +8,11 @@ import MyMessages from "./components/MyMessages";
 const Chat = () => {
   return (
     <h1>Chat</h1>
-    // <CssVarsProvider disableTransitionOnChange>
-    //   <CssBaseline />
     //   <Box sx={{ display: "flex", minHeight: "100dvh" }}>
-    //     <Sidebar />
-    //     <Header />
     //     <Box component="main" className="MainContent" sx={{ flex: 1 }}>
     //       <MyMessages />
     //     </Box>
     //   </Box>
-    // </CssVarsProvider>
   );
 };
 
