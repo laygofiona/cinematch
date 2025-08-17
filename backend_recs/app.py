@@ -5,10 +5,15 @@ import pandas as pd
 import numpy as np
 from utils import get_user_movie_matrix, build_user_similarity_matrix, recommend_movies
 from dotenv import load_dotenv
+from flask_cors import CORS
 
 load_dotenv()
 # Initialize Flask app
 app = Flask(__name__)
+
+# Adding CORS support to allow requests from react frontend
+CORS(app, origins=["http://localhost:5173"])
+
 
 # Initialize Supabase client
 url: str = os.getenv("SUPABASE_URL")
@@ -17,7 +22,7 @@ supabase: Client = create_client(url, key)
 
 
 
-@app.route('/swipe', methods=['POST'])
+@app.route('/api/swipe', methods=['POST'])
 def swipe():
     try:
         # Get user swipe data from request
@@ -46,13 +51,23 @@ def swipe():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/recommendations/<user_id>', methods=['GET'])
+@app.route('/api/recommendations/<user_id>', methods=['GET'])
 def get_recommendations(user_id):
     try:
         user_movie_matrix = get_user_movie_matrix()
         similarity_matrix = build_user_similarity_matrix(user_movie_matrix)
 
         movies = supabase.table("movies").select("*").execute()
+        
+        # only get movies that have not been swiped by the user
+        # get movie ids that the user has swiped
+        swiped_movies = supabase.table("swipes").select("movie_id").eq("user_id", user_id).execute()
+        swiped_movie_ids = [swipe['movie_id'] for swipe in swiped_movies.data]
+        
+        if swiped_movie_ids:
+            movies = movies.data
+            # filter out swiped movies
+            movies = [movie for movie in movies if movie['movieId'] not in swiped_movie_ids]
         
         # Check if movies data is empty
         if not movies.data:
@@ -61,14 +76,14 @@ def get_recommendations(user_id):
         # Convert to DataFrame
         movies_data = pd.DataFrame(movies.data)
         
-        # Recommend 20 movies for the user
-        recs = recommend_movies(user_id, user_movie_matrix, similarity_matrix, movies_data, top_n=20)
+        # Recommend 10 movies for the user
+        recs = recommend_movies(user_id, user_movie_matrix, similarity_matrix, movies_data, top_n=10)
 
         return recs.to_json(orient="records")
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/matches/<user_id>', methods=['GET'])
+@app.route('/api/matches/<user_id>', methods=['GET'])
 def get_matches(user_id):
     try:
         # Get user-movie matrix and similarity matrix
@@ -101,11 +116,23 @@ def get_matches(user_id):
         return jsonify({"error": f"Error getting matches for user {str(e)}"}), 500
 
 # Route to give first-time user 30 movies to swipe on to build their profile data
-@app.route('/initial_swipe', methods=['GET'])
-def initial_swipe():
+@app.route('/api/initial_swipe/<user_id>', methods=['GET'])
+def initial_swipe(user_id: str):
     try:
-        # Get 30 random movies from the database
-        movies = supabase.table("movies").select("*").limit(30).execute()
+        
+        # Get the id of the movies that the user has swiped
+        swiped_movies = supabase.table("swipes").select("movie_id").eq("user_id", user_id).execute()
+    
+        swiped_movie_ids = [swipe['movie_id'] for swipe in swiped_movies.data]
+        
+        movies = None
+        
+        # Get 10 movies from the movies table that the user has not swiped
+        if swiped_movie_ids:
+            movies = supabase.table("movies").select("*").not_.in_("movieId", swiped_movie_ids).limit(10).execute()
+        else:
+            # If no swiped movies, get the first 10 movies
+            movies = supabase.table("movies").select("*").limit(10).execute()
         
         # Check if movies data is empty
         if not movies.data:
