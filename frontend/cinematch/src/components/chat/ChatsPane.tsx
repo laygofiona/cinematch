@@ -8,7 +8,7 @@ import EditNoteRoundedIcon from "@mui/icons-material/EditNoteRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import ChatListItem from "./ChatListItem";
-import { ChatProps } from "../types";
+import type { ChatProps } from "../types";
 import { toggleMessagesPane } from "../utils";
 
 type ChatsPaneProps = {
@@ -24,7 +24,7 @@ export default function ChatsPane(props: ChatsPaneProps) {
       sx={{
         borderRight: "1px solid",
         borderColor: "divider",
-        height: { sm: "calc(100dvh - var(--Header-height))", md: "100dvh" },
+        height: { xs: "84vh" },
         overflowY: "auto",
       }}
     >

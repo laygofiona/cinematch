@@ -23,6 +23,7 @@ export default function Footer() {
             left: 0,
             right: 0,
             borderTop: "1px solid #e0e0e0",
+            zIndex: 100,
           }}
           elevation={3}
         >

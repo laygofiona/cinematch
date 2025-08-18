@@ -9,7 +9,7 @@ import CircleIcon from "@mui/icons-material/Circle";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import PhoneInTalkRoundedIcon from "@mui/icons-material/PhoneInTalkRounded";
 import MoreVertRoundedIcon from "@mui/icons-material/MoreVertRounded";
-import { UserProps } from "../types";
+import type { UserProps } from "../types";
 import { toggleMessagesPane } from "../utils";
 
 type MessagesPaneHeaderProps = {
@@ -69,30 +69,7 @@ export default function MessagesPaneHeader(props: MessagesPaneHeaderProps) {
           >
             {sender.name}
           </Typography>
-          <Typography level="body-sm">{sender.username}</Typography>
         </div>
-      </Stack>
-      <Stack spacing={1} direction="row" sx={{ alignItems: "center" }}>
-        <Button
-          startDecorator={<PhoneInTalkRoundedIcon />}
-          color="neutral"
-          variant="outlined"
-          size="sm"
-          sx={{ display: { xs: "none", md: "inline-flex" } }}
-        >
-          Call
-        </Button>
-        <Button
-          color="neutral"
-          variant="outlined"
-          size="sm"
-          sx={{ display: { xs: "none", md: "inline-flex" } }}
-        >
-          View profile
-        </Button>
-        <IconButton size="sm" variant="plain" color="neutral">
-          <MoreVertRoundedIcon />
-        </IconButton>
       </Stack>
     </Stack>
   );

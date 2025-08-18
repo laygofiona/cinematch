@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import routes from "./components/routes/routes.tsx";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { useLockBodyScroll } from "@uidotdev/usehooks";
 
 const darkTheme = createTheme({
   palette: {
@@ -23,6 +24,8 @@ const router = createBrowserRouter(routes, {
 });
 
 function App() {
+  // Locks Scrolling in the body
+  useLockBodyScroll();
   return (
     <>
       <ThemeProvider theme={darkTheme}>

@@ -6,7 +6,7 @@ import AvatarWithStatus from "./AvatarWithStatus";
 import ChatBubble from "./ChatBubble";
 import MessageInput from "./MessageInput";
 import MessagesPaneHeader from "./MessagesPaneHeader";
-import { ChatProps, MessageProps } from "../types";
+import type { ChatProps, MessageProps } from "../types";
 
 type MessagesPaneProps = {
   chat: ChatProps;
@@ -24,7 +24,7 @@ export default function MessagesPane(props: MessagesPaneProps) {
   return (
     <Sheet
       sx={{
-        height: { xs: "calc(100dvh - var(--Header-height))", md: "100dvh" },
+        height: { xs: "86.9vh" },
         display: "flex",
         flexDirection: "column",
         backgroundColor: "background.level1",

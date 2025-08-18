@@ -1,18 +1,21 @@
-import * as React from "react";
-// Only use CssVarsProvider if you plan to use Joy UI components somewhere
 import Box from "@mui/material/Box"; // Material Box
-import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
-import MyMessages from "./components/MyMessages";
+import MyMessages from "../chat/MyMessages";
+import { CssVarsProvider } from "@mui/joy/styles";
+
+import { useLockBodyScroll } from "@uidotdev/usehooks";
 
 const Chat = () => {
+  useLockBodyScroll();
   return (
-    <h1>Chat</h1>
-    //   <Box sx={{ display: "flex", minHeight: "100dvh" }}>
-    //     <Box component="main" className="MainContent" sx={{ flex: 1 }}>
-    //       <MyMessages />
-    //     </Box>
-    //   </Box>
+    <>
+      <CssVarsProvider>
+        <Box sx={{ display: "flex" }}>
+          <Box component="main" className="MainContent" sx={{ flex: 1 }}>
+            <MyMessages />
+          </Box>
+        </Box>
+      </CssVarsProvider>
+    </>
   );
 };
 
