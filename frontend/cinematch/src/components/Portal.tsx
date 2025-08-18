@@ -10,17 +10,17 @@ const Portal = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Navbar: 15% of viewport height */}
-      <div className="flex-none ">
+      <div className="flex-none z-40 ">
         <NavBar />
       </div>
-      <div className="flex flex-col justify-center h-screen bg-black">
+      <div className="flex flex-col justify-center h-screen bg-black z-10 ">
         <main className="h-[100vh] bg-[#2a1e3f]">
           <Outlet />
         </main>
       </div>
 
       {/* Footer: 10% of viewport height */}
-      <div className="flex-none ">
+      <div className="flex-none z-40 ">
         <Footer />
       </div>
     </div>

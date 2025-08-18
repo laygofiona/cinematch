@@ -88,6 +88,7 @@ export default function ChatsPane(props: ChatsPaneProps) {
           aria-label="Search"
         />
       </Box>
+      {/* List of Chats user has had or is having */}
       <List
         sx={{
           py: 0,
