@@ -5,3 +5,4 @@ backend_recs/__pycache__/
 backend_recs/data/
 backend_recs/data_processing.py
 backend_recs/venv/
+*.env

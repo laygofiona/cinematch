@@ -52,6 +52,8 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
   },
 }));
 
+
+
 export default function SignIn() {
   // Locks Scrolling in the body
   useLockBodyScroll();
@@ -69,6 +71,7 @@ export default function SignIn() {
       console.log("Redirecting to Google sign-in...", data);
     }
   };
+
 
   return (
     <>
