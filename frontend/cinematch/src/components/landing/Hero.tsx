@@ -47,6 +47,10 @@ export default function Hero() {
       id="hero"
       sx={(theme) => ({
         width: "100%",
+        height: "100vh", // full screen height
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center", // center vertically
         backgroundRepeat: "no-repeat",
         backgroundImage:
           "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(140, 120, 170, 0.4), transparent)",
@@ -61,8 +65,8 @@ export default function Hero() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          pt: { xs: 14, sm: 20 },
-          pb: { xs: 8, sm: 12 },
+          justifyContent: "center", // 👈 centers inside container
+          textAlign: "center",
         }}
       >
         <Stack
@@ -74,7 +78,7 @@ export default function Hero() {
           <motion.img
             src="/CineMatch_logo.svg"
             alt="Logo"
-            style={{ width: 200, height: 200, marginRight: "8px" }}
+            style={{ width: 120, height: 120 }}
             variants={fadeUp}
             initial="hidden"
             animate="visible"
