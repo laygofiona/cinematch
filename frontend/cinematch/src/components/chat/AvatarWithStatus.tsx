@@ -1,4 +1,3 @@
-import * as React from "react";
 import Badge from "@mui/joy/Badge";
 import Avatar from "@mui/joy/Avatar";
 import type { AvatarProps } from "@mui/joy/Avatar";
